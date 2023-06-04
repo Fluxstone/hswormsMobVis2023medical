@@ -59,6 +59,15 @@ namespace UnityEngine.XR.ARFoundation.Samples
             sphere1.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             sp1Spawned = true;
         }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.name == "V1")
+            {
+                Debug.Log("AR Marker collided with the sphere.");
+            }
+        }
+
         
         void OnHumanBodiesChanged(ARHumanBodiesChangedEventArgs eventArgs)
         {
@@ -127,4 +136,41 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
         }
     }
+
+    using UnityEngine;
+    using UnityEngine.XR.ARFoundation;
+
+    public class ARImageTracking : MonoBehaviour
+    {
+        [SerializeField]
+        private GameObject arMarkerObject; // Assign your virtual collision object prefab here
+
+        private ARTrackedImageManager arTrackedImageManager;
+
+        private void Awake()
+        {
+            arTrackedImageManager = GetComponent<ARTrackedImageManager>();
+        }
+
+        private void OnEnable()
+        {
+            arTrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+        }
+
+        private void OnDisable()
+        {
+            arTrackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
+        }
+
+        private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
+        {
+            // Iterate over new images
+            foreach (var newImage in eventArgs.added)
+            {
+                // Create a virtual object at the AR marker's position
+                Instantiate(arMarkerObject, newImage.transform.position, newImage.transform.rotation);
+            }
+        }
+    }
+
 }
