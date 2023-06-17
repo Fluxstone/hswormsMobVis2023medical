@@ -48,16 +48,105 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 m_HumanBodyManager.humanBodiesChanged -= OnHumanBodiesChanged;
         }
 
+
         //Objects
         public GameObject sphere1;
         public bool sp1Spawned = false;
+        
+        public GameObject sphere2;
+        public bool sp2Spawned = false;
 
+        public GameObject sphere3;
+        public bool sp3Spawned = false;
+        
+        public GameObject sphere4;
+        public bool sp4Spawned = false;
+        
+        public GameObject sphere5;
+        public bool sp5Spawned = false;
+        
+        public GameObject sphere6;
+        public bool sp6Spawned = false;
+        
+        public GameObject sphere7;
+        public bool sp7Spawned = false;
+        
+        //red
         private void drawSphere1(float x,float y,float z)
         {
             sphere1 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             sphere1.transform.position = new Vector3(x, y, z);
-            sphere1.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            sphere1.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere1.GetComponent<Renderer>().material.color = Color.red;
+            
             sp1Spawned = true;
+        }
+        //blue
+        private void drawSphere2(float x,float y,float z)
+        {
+            sphere2 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere2.transform.position = new Vector3(x, y, z);
+            sphere2.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere2.GetComponent<Renderer>().material.color = Color.blue;
+            
+            sp2Spawned = true;
+        }
+        //green
+        private void drawSphere3(float x,float y,float z)
+        {
+            sphere3 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere3.transform.position = new Vector3(x, y, z);
+            sphere3.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere3.GetComponent<Renderer>().material.color = Color.green;
+            
+            sp3Spawned = true;
+        }
+        //magenta
+        private void drawSphere4(float x,float y,float z)
+        {
+            sphere4 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere4.transform.position = new Vector3(x, y, z);
+            sphere4.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere4.GetComponent<Renderer>().material.color = Color.magenta;
+            
+            sp4Spawned = true;
+        }
+        //white
+        private void drawSphere5(float x,float y,float z)
+        {
+            sphere5 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere5.transform.position = new Vector3(x, y, z);
+            sphere5.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere5.GetComponent<Renderer>().material.color = Color.white;
+            
+            sp5Spawned = true;
+        }
+        //yellow
+        private void drawSphere6(float x,float y,float z)
+        {
+            sphere6 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere6.transform.position = new Vector3(x, y, z);
+            sphere6.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere6.GetComponent<Renderer>().material.color = Color.yellow;
+            
+            sp6Spawned = true;
+        }
+        //black
+        private void drawSphere7(float x,float y,float z)
+        {
+            sphere7 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere7.transform.position = new Vector3(x, y, z);
+            sphere7.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            
+            sphere7.GetComponent<Renderer>().material.color = Color.black;
+            
+            sp7Spawned = true;
         }
 
         void OnCollisionEnter(Collision collision)
@@ -112,11 +201,30 @@ namespace UnityEngine.XR.ARFoundation.Samples
                         {
                             jointIndex = jointIndex++;
                             
-                            if (joint.index == 17)
+                            if (joint.index == 24)
                             {
-                                //DO STUFF HERE
+                                //red
                                 Destroy(sphere1);
-                                drawSphere1(x + 0.1f, y + 0.3f, z);
+                                drawSphere1(x + 0.1f, y + 0.4f, z - 0.1f);
+                                //blue
+                                Destroy(sphere2);
+                                drawSphere2(x - 0.09f, y + 0.30f, z + 0.0f);
+                                //green
+                                Destroy(sphere3);
+                                drawSphere3(x + 0.15f, y + 0.33f, z - 0.1f);
+                                //magenta
+                                Destroy(sphere4);
+                                drawSphere4(x + 0.2f, y + 0.4f, z - 0.1f);
+                                //Unable to display these as rotation does not work propperly
+                                //white
+                                //Destroy(sphere5);
+                                //drawSphere5(x + 0.0f, y + 0.0f, z + 0.0f);
+                                //yellow
+                                //Destroy(sphere6);
+                                //drawSphere6(x + 0.0f, y + 0.0f, z + 0.0f);
+                                //black
+                                //Destroy(sphere7);
+                                //drawSphere7(x + 0.0f, y + 0.0f, z + 0.0f);
                             }
                         }
                     }
