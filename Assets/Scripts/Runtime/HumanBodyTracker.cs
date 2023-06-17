@@ -154,6 +154,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             if(collision.gameObject.name == "V1")
             {
                 Debug.Log("AR Marker collided with the sphere.");
+                sphere1.GetComponent<Renderer>().material.color = Color.green;
             }
         }
 
@@ -245,8 +246,6 @@ namespace UnityEngine.XR.ARFoundation.Samples
         }
     }
 
-    using UnityEngine;
-    using UnityEngine.XR.ARFoundation;
 
     public class ARImageTracking : MonoBehaviour
     {
