@@ -256,6 +256,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         private void Awake()
         {
+            arMarkerObject.AddComponent<Collider>(); // Adding a Collider to the AR Marker
+            arMarkerObject.AddComponent<Rigidbody>(); // Adding a Rigidbody to the AR Marker
             arTrackedImageManager = GetComponent<ARTrackedImageManager>();
         }
 
@@ -275,7 +277,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
             foreach (var newImage in eventArgs.added)
             {
                 // Create a virtual object at the AR marker's position
-                Instantiate(arMarkerObject, newImage.transform.position, newImage.transform.rotation);
+                GameObject marker = Instantiate(arMarkerObject, newImage.transform.position, newImage.transform.rotation);
+                marker.name = "V1";
             }
         }
     }
